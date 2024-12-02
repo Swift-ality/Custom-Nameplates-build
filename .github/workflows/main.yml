@@ -28,3 +28,7 @@ jobs:
         with:
           name: Build Output
           path: build/libs/*.jar
+      - name: Cleanup
+        run: |
+          ./gradlew --stop  # Ensure Gradle daemon stops to avoid hanging
+          echo "Cleaned up background processes"
