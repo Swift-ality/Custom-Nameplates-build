@@ -18,7 +18,7 @@ jobs:
         with:
           distribution: "temurin"
           java-version: ${{ matrix.jdkversion }}
-          cache: "gradle"
+          cache: "gradle"  # Or adjust caching strategy if using Maven
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
       - name: Build with Gradle
@@ -27,8 +27,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Build Output
-          path: build/libs/*.jar
+          path: target/*.jar
       - name: Cleanup
         run: |
-          ./gradlew --stop  # Ensure Gradle daemon stops to avoid hanging
+          ./gradlew --stop
           echo "Cleaned up background processes"
